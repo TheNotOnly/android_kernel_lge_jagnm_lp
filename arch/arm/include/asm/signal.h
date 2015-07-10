@@ -132,6 +132,7 @@ struct sigaction {
 struct k_sigaction {
 	struct sigaction sa;
 };
+#define __ARCH_HAS_SA_RESTORER
 
 #else
 /* Here we must cater to libcs that poke about in kernel headers.  */
