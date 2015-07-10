@@ -5347,7 +5347,6 @@ static int tcp_validate_incoming(struct sock *sk, struct sk_buff *skb,
 	if (th->syn && !before(TCP_SKB_CB(skb)->seq, tp->rcv_nxt)) {
 		if (syn_inerr)
 			TCP_INC_STATS_BH(sock_net(sk), TCP_MIB_INERRS);
-		NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_TCPABORTONSYN);
 		tcp_reset(sk);
 		return -1;
 	}

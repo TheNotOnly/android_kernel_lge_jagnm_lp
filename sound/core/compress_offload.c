@@ -106,8 +106,9 @@ static int snd_compr_open(struct inode *inode, struct file *f)
 	}
 
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
-	if (!data)
+	if (!data) {
 		return -ENOMEM;
+	}
 	data->stream.ops = compr->ops;
 	data->stream.direction = dirn;
 	data->stream.private_data = compr->private_data;
@@ -128,7 +129,7 @@ static int snd_compr_open(struct inode *inode, struct file *f)
 		kfree(runtime);
 		kfree(data);
 	}
-	return ret;
+	return 0;
 }
 
 static int snd_compr_free(struct inode *inode, struct file *f)

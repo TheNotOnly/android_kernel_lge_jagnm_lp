@@ -1053,6 +1053,8 @@ free_client(struct nfs4_client *clp)
 		put_group_info(clp->cl_cred.cr_group_info);
 	kfree(clp->cl_principal);
 	kfree(clp->cl_name.data);
+	idr_remove_all(&clp->cl_stateids);
+	idr_destroy(&clp->cl_stateids);
 	kfree(clp);
 }
 
@@ -2356,7 +2358,7 @@ nfsd4_init_slabs(void)
 	if (openowner_slab == NULL)
 		goto out_nomem;
 	lockowner_slab = kmem_cache_create("nfsd4_lockowners",
-			sizeof(struct nfs4_openowner), 0, 0, NULL);
+			sizeof(struct nfs4_lockowner), 0, 0, NULL);
 	if (lockowner_slab == NULL)
 		goto out_nomem;
 	file_slab = kmem_cache_create("nfsd4_files",

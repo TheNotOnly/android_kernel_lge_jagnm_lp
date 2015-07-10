@@ -1244,6 +1244,7 @@ static int snd_pcm_dev_disconnect(struct snd_device *device)
 			pcm->streams[cidx].vol_kctl = NULL;
 		}
 	}
+	mutex_unlock(&pcm->open_mutex);
  unlock:
 	mutex_unlock(&register_mutex);
 	return 0;

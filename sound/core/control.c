@@ -59,12 +59,10 @@ static int snd_ctl_open(struct inode *inode, struct file *file)
 	card = snd_lookup_minor_data(iminor(inode), SNDRV_DEVICE_TYPE_CONTROL);
 	if (!card) {
 		err = -ENODEV;
-		goto __error1;
 	}
 	err = snd_card_file_add(card, file);
 	if (err < 0) {
 		err = -ENODEV;
-		goto __error1;
 	}
 	if (!try_module_get(card->module)) {
 		err = -EFAULT;
@@ -92,7 +90,6 @@ static int snd_ctl_open(struct inode *inode, struct file *file)
 	module_put(card->module);
       __error2:
 	snd_card_file_remove(card, file);
-      __error1:
       	return err;
 }
 
@@ -1433,6 +1430,8 @@ static ssize_t snd_ctl_read(struct file *file, char __user *buffer,
 			spin_unlock_irq(&ctl->read_lock);
 			schedule();
 			remove_wait_queue(&ctl->change_sleep, &wait);
+			if (ctl->card->shutdown)
+				return -ENODEV;
 			if (signal_pending(current))
 				return -ERESTARTSYS;
 			spin_lock_irq(&ctl->read_lock);
