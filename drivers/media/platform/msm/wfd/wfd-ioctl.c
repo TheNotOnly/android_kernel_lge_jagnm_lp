@@ -784,7 +784,6 @@ static struct vb2_ops wfd_vidbuf_ops = {
 };
 
 static const struct v4l2_subdev_core_ops mdp_subdev_core_ops = {
-	.init = mdp_init,
 	.ioctl = mdp_ioctl,
 };
 
