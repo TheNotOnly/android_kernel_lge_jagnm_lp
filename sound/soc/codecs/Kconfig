@@ -475,6 +475,12 @@ config SND_SOC_MSM_HDMI_CODEC_RX
 	HDMI audio drivers should be built only if the platform
         supports hdmi panel.
 
+config SOUND_CONTROL_HAX_3_GPL
+	tristate "new wcd93xx sound control hax"
+	default y
+	help
+	  FauxSound WCD93xx chipset sound control hacks 3.0 for deeper hax
+
 config LGE_MBHC_FAST_IRQ_HANDLER
 	bool "put irq handler body into work queue to improve headset detection fail rate"
 	default n
