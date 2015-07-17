@@ -36,8 +36,7 @@ unsigned int tapan_read(struct snd_soc_codec *codec, unsigned int reg);
 int tapan_write(struct snd_soc_codec *codec, unsigned int reg,
 		unsigned int value);
 
-
-static unsigned int cached_regs[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+static unsigned int cached_regs[] = {6, 6, 0, 0, 0, 0, 0, 0, 0, 0,
 			    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			    0 };
 
@@ -107,22 +106,20 @@ int snd_hax_reg_access(unsigned int reg)
 		case TAPAN_A_RX_HPH_R_GAIN:
 		case TAPAN_A_RX_HPH_L_STATUS:
 		case TAPAN_A_RX_HPH_R_STATUS:
-			if (wcd9xxx_hw_revision == 1)
-				if (snd_ctrl_locked)
-					ret = 0;
+			if (snd_ctrl_locked > 1)
 			break;
 		case TAPAN_A_CDC_RX1_VOL_CTL_B2_CTL:
 		case TAPAN_A_CDC_RX2_VOL_CTL_B2_CTL:
 		case TAPAN_A_CDC_RX3_VOL_CTL_B2_CTL:
 		case TAPAN_A_CDC_RX4_VOL_CTL_B2_CTL:
-			if (snd_ctrl_locked)
+			if (snd_ctrl_locked > 0)
 				ret = 0;
 			break;
 		case TAPAN_A_CDC_TX1_VOL_CTL_GAIN:
 		case TAPAN_A_CDC_TX2_VOL_CTL_GAIN:
 		case TAPAN_A_CDC_TX3_VOL_CTL_GAIN:
 		case TAPAN_A_CDC_TX4_VOL_CTL_GAIN:
-			if (snd_ctrl_locked)
+			if (snd_ctrl_locked > 0)
 				ret = 0;
 			break;
 		default:
@@ -264,22 +261,18 @@ static ssize_t headphone_pa_gain_store(struct kobject *kobj,
 	if (calc_checksum(lval, rval, chksum)) {
 	gain = tapan_read(fauxsound_codec_ptr, TAPAN_A_RX_HPH_L_GAIN);
 	out = (gain & 0xf0) | lval;
-	if (wcd9xxx_hw_revision == 1)
 	tapan_write(fauxsound_codec_ptr, TAPAN_A_RX_HPH_L_GAIN, out);
 
 	status = tapan_read(fauxsound_codec_ptr, TAPAN_A_RX_HPH_L_STATUS);
 	out = (status & 0x0f) | (lval << 4);
-	if (wcd9xxx_hw_revision == 1)
 	tapan_write(fauxsound_codec_ptr, TAPAN_A_RX_HPH_L_STATUS, out);
 
 	gain = tapan_read(fauxsound_codec_ptr, TAPAN_A_RX_HPH_R_GAIN);
 	out = (gain & 0xf0) | rval;
-	if (wcd9xxx_hw_revision == 1)
 	tapan_write(fauxsound_codec_ptr, TAPAN_A_RX_HPH_R_GAIN, out);
 
 	status = tapan_read(fauxsound_codec_ptr, TAPAN_A_RX_HPH_R_STATUS);
 	out = (status & 0x0f) | (rval << 4);
-	if (wcd9xxx_hw_revision == 1)
 	tapan_write(fauxsound_codec_ptr, TAPAN_A_RX_HPH_R_STATUS, out);
 	}
 	return count;
@@ -339,10 +332,7 @@ static ssize_t sound_control_locked_store(struct kobject *kobj,
 
 	sscanf(buf, "%d", &inp);
 
-	if (inp == 0)
-		snd_ctrl_locked = 0;
-	else
-		snd_ctrl_locked = 1;
+	snd_ctrl_locked = inp;
 
 	return count;
 }
