@@ -80,6 +80,10 @@
 extern void set_vzw_usb_charging_state(int state);
 #endif
 
+#ifdef CONFIG_FORCE_FAST_CHARGE
+#include <linux/fastchg.h>
+#endif
+
 #define MSM_USB_BASE	(motg->regs)
 #define DRIVER_NAME	"msm_otg"
 
@@ -658,6 +662,10 @@ static int msm_otg_reset(struct usb_phy *phy)
 	int ret;
 	u32 val = 0;
 	u32 ulpi_val = 0;
+
+#ifdef CONFIG_FORCE_FAST_CHARGE
+	USB_porttype_detected = NO_USB_DETECTED; /* No USB plugged, clear fast charge detected port value */
+#endif
 
 	/*
 	 * USB PHY and Link reset also reset the USB BAM.
@@ -3067,6 +3075,7 @@ static void lge_chg_detect_work(struct work_struct *w)
 	queue_delayed_work(system_nrt_wq, &motg->lge_chg_work, msecs_to_jiffies(500));
 }
 #endif
+
 /*
  * We support OTG, Peripheral only and Host only configurations. In case
  * of OTG, mode switch (host-->peripheral/peripheral-->host) can happen
