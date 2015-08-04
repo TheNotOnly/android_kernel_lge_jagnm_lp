@@ -589,13 +589,18 @@ static void zram_reset_device(struct zram *zram, bool reset_capacity)
 	memset(&zram->stats, 0, sizeof(zram->stats));
 
 	zram->disksize = 0;
-	if (reset_capacity) {
+	if (reset_capacity)
 		set_capacity(zram->disk, 0);
-		revalidate_disk(zram->disk);
-	}
 	up_write(&zram->init_lock);
 }
 
+	/*
+	 * Revalidate disk out of the init_lock to avoid lockdep splat.
+	 * It's okay because disk's capacity is protected by init_lock
+	 * so that revalidate_disk always sees up-to-date capacity.
+	 */
+	if (reset_capacity)
+		revalidate_disk(zram->disk);
 static void zram_init_device(struct zram *zram, struct zram_meta *meta)
 {
 	if (zram->disksize > 2 * (totalram_pages << PAGE_SHIFT)) {
@@ -646,9 +651,15 @@ static ssize_t disksize_store(struct device *dev,
 
 	zram->disksize = disksize;
 	set_capacity(zram->disk, zram->disksize >> SECTOR_SHIFT);
-	revalidate_disk(zram->disk);
 	zram_init_device(zram, meta);
 	up_write(&zram->init_lock);
+
+	/*
+	 * Revalidate disk out of the init_lock to avoid lockdep splat.
+	 * It's okay because disk's capacity is protected by init_lock
+	 * so that revalidate_disk always sees up-to-date capacity.
+	 */
+	revalidate_disk(zram->disk);
 
 	return len;
 }
