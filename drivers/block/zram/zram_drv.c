@@ -596,7 +596,6 @@ static void zram_reset_device(struct zram *zram, bool reset_capacity)
 	if (reset_capacity)
 		set_capacity(zram->disk, 0);
 	up_write(&zram->init_lock);
-}
 
 	/*
 	 * Revalidate disk out of the init_lock to avoid lockdep splat.
@@ -605,6 +604,8 @@ static void zram_reset_device(struct zram *zram, bool reset_capacity)
 	 */
 	if (reset_capacity)
 		revalidate_disk(zram->disk);
+}
+
 static void zram_init_device(struct zram *zram, struct zram_meta *meta)
 {
 	if (zram->disksize > 2 * (totalram_pages << PAGE_SHIFT)) {
