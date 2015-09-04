@@ -2983,6 +2983,26 @@ static void msm_chg_detect_work(struct work_struct *w)
 		msm_chg_enable_aca_intr(motg);
 		dev_dbg(phy->dev, "chg_type = %s\n",
 			chg_to_string(motg->chg_type));
+#ifdef CONFIG_FORCE_FAST_CHARGE
+		 switch (motg->chg_type) {
+		 case USB_SDP_CHARGER: USB_porttype_detected = USB_SDP_DETECTED;
+		 break;
+		 case USB_DCP_CHARGER: USB_porttype_detected = USB_DCP_DETECTED;
+		 break;
+		 case USB_CDP_CHARGER: USB_porttype_detected = USB_CDP_DETECTED;
+		 break;
+		 case USB_ACA_A_CHARGER: USB_porttype_detected = USB_ACA_A_DETECTED;
+		 break;
+		 case USB_ACA_B_CHARGER: USB_porttype_detected = USB_ACA_B_DETECTED;
+		 break;
+		 case USB_ACA_C_CHARGER: USB_porttype_detected = USB_ACA_C_DETECTED;
+		 break;
+		 case USB_ACA_DOCK_CHARGER: USB_porttype_detected = USB_ACA_DOCK_DETECTED;
+		 break;
+		 default: USB_porttype_detected = USB_INVALID_DETECTED;
+		 break;
+ 		 }
+#endif
 		queue_work(system_nrt_wq, &motg->sm_work);
 		return;
 	default:
@@ -3075,7 +3095,6 @@ static void lge_chg_detect_work(struct work_struct *w)
 	queue_delayed_work(system_nrt_wq, &motg->lge_chg_work, msecs_to_jiffies(500));
 }
 #endif
-
 /*
  * We support OTG, Peripheral only and Host only configurations. In case
  * of OTG, mode switch (host-->peripheral/peripheral-->host) can happen
@@ -4119,6 +4138,15 @@ static void msm_otg_sm_work(struct work_struct *w)
 	}
 	if (work)
 		queue_work(system_nrt_wq, &motg->sm_work);
+#ifdef CONFIG_FORCE_FAST_CHARGE
+	if (motg->chg_type == USB_INVALID_CHARGER) {
+		USB_peripheral_detected = USB_ACC_NOT_DETECTED; /* Inform forced fast charge that a USB accessory has been attached */
+		pr_debug("USB forced fast charge : USB device currently attached");
+	} else {
+		USB_peripheral_detected = USB_ACC_DETECTED; /* Inform forced fast charge that a USB accessory has not been attached */
+		pr_debug("USB forced fast charge : No USB device currently attached");
+	}
+#endif
 }
 
 static void msm_otg_suspend_work(struct work_struct *w)
