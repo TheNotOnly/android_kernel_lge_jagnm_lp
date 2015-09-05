@@ -169,60 +169,6 @@ static enum hrtimer_restart touch_trigger_timer_handler(struct hrtimer *timer)
 	return HRTIMER_NORESTART;
 }
 
-void trigger_usb_state_from_otg(int type)
-{
-	u8 buf = 0;
-	int plug_in = 0;
-
-	if (!synaptics_probe || !device_control_reg)
-		return;
-
-	mutex_lock(&i2c_suspend_lock);
-
-	plug_in = (type == 0) ? 0 : 1;
-
-	if (touch_test_dev && touch_test_dev->pdata->role->ghost_detection_enable) {
-		TOUCH_INFO_MSG("plug_in_type : %d \n", type);
-		/* INVALID:0, SDP:1, DCP:2, CDP:3 */
-
-
-	    if (plug_in == 0 || plug_in == 1) {
-			if (touch_test_dev->curr_pwr_state == POWER_ON
-				&& !touch_test_dev->fw_info.fw_upgrade.is_downloading) {
-				if (plug_in == 0) {
-					touch_i2c_read(touch_test_dev->client, device_control_reg, 1, &buf);
-					buf = buf & 0xDF;
-					touch_i2c_write_byte(touch_test_dev->client, device_control_reg, buf);
-
-					cns_en = 0;
-					if (cur_hopping_idx != 3)
-						cur_hopping_idx = 3;
-					safety_reset(touch_test_dev);
-					queue_delayed_work(touch_wq, &touch_test_dev->work_init,
-								msecs_to_jiffies(touch_test_dev->pdata->role->booting_delay));
-				} else if (plug_in == 1) {
-					touch_i2c_read(touch_test_dev->client, device_control_reg, 1, &buf);
-					buf = buf | 0x20;
-					touch_i2c_write_byte(touch_test_dev->client, device_control_reg, buf);
-				}
-			}
-
-			ts_charger_type = type;
-			TOUCH_INFO_MSG(" trigger_baseline_state_machine = %d type = %d \n", plug_in, type);
-			ts_charger_plug = plug_in;
-
-			if (trigger_baseline == 0 && plug_in == 1) {
-				trigger_baseline = 1;
-
-				hrtimer_start(&hr_touch_trigger_timer, ktime_set(0, MS_TO_NS(1000)), HRTIMER_MODE_REL);
-			}
-		}
-	}
-
-	mutex_unlock(&i2c_suspend_lock);
-
-}
-
 #define ts_caps	(ts->pdata->caps)
 #define ts_role	(ts->pdata->role)
 #define ts_ghost_value	(ts->pdata->caps->ghost_detection_value)
