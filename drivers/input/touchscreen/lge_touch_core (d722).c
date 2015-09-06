@@ -1593,8 +1593,6 @@ static void touch_gesture_wakeup_func(struct work_struct *work_gesture_wakeup)
 {
 	struct lge_touch_data *ts =
 		container_of(to_delayed_work(work_gesture_wakeup), struct lge_touch_data, work_gesture_wakeup);
-	
-        struct input_dev *input_dev = ts->input_dev;
 
 	if (ts->fw_info.fw_upgrade.is_downloading == UNDER_DOWNLOADING) {
 		TOUCH_INFO_MSG("touch_gesture_wakeup is not executed\n");
@@ -1609,11 +1607,6 @@ static void touch_gesture_wakeup_func(struct work_struct *work_gesture_wakeup)
 		TOUCH_ERR_MSG("touch_gesture_wakeup_func get data fail\n");
 	}
 
-
-	input_report_key(input_dev, KEY_DOUBLE_TAP, 1);
-    	input_report_key(input_dev, KEY_DOUBLE_TAP, 0);
-	input_sync(input_dev);
-	
 	mutex_unlock(&i2c_suspend_lock);
 	mutex_unlock(&ts->irq_work_mutex);
 
@@ -4342,8 +4335,6 @@ static int touch_probe(struct i2c_client *client, const struct i2c_device_id *id
 	ts->input_dev->name = "touch_dev";
 	set_bit(EV_SYN, ts->input_dev->evbit);
 	set_bit(EV_ABS, ts->input_dev->evbit);
-	set_bit(EV_KEY, ts->input_dev->evbit);
-	set_bit(KEY_DOUBLE_TAP, ts->input_dev->keybit);
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 0, 0))
 	set_bit(INPUT_PROP_DIRECT, ts->input_dev->propbit);
 #endif
