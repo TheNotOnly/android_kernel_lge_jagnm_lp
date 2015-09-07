@@ -246,8 +246,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer
-HOSTCXXFLAGS = -O2
+HOSTCFLAGS   = -Wall -Wmissing-prototypes -Wstrict-prototypes -Ofast -fomit-frame-pointer -pipe -DNDEBUG -fgcse-las
+HOSTCXXFLAGS = -pipe -DNDEBUG -Ofast -fgcse-las -fgraphite -fgraphite-identity
 
 # Decide whether to build built-in, modular, or both.
 # Normally, just do built-in.
@@ -352,10 +352,10 @@ CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-CFLAGS_MODULE   = -fno-pic -march=armv7-a -mfpu=neon-vfpv4
+CFLAGS_MODULE   = -fno-pic -mfpu=neon-vfpv4
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL	= -march=armv7-a -mfpu=neon-vfpv4
+CFLAGS_KERNEL	= --mfpu=neon-vfpv4
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -372,7 +372,7 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
-		   -Wno-format-security \
+		   -Wno-format-security -Wno-array-bounds \
 		   -fno-delete-null-pointer-checks \
 		   -mfpu=neon-vfpv4
 KBUILD_AFLAGS_KERNEL :=
@@ -567,7 +567,7 @@ all: vmlinux
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
 else
-KBUILD_CFLAGS	+= -O2
+KBUILD_CFLAGS	+= -Ofast -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-tree-vectorize -Wno-array-bounds
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
