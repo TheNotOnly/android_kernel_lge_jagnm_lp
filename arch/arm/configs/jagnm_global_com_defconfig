@@ -3,7 +3,7 @@
 # CONFIG_LEGACY_PTYS is not set
 CONFIG_EXPERIMENTAL=y
 CONFIG_CROSS_COMPILE="./Toolchain/5.2/bin/arm-architoolchain-linux-gnueabihf-"
-CONFIG_LOCALVERSION="Bread and Butter Kernel"
+CONFIG_LOCALVERSION=""
 # CONFIG_LOCALVERSION_AUTO is not set
 CONFIG_SYSVIPC=y
 CONFIG_AUDIT=y
