@@ -39,7 +39,8 @@
 			<26 512 1600000 3200000>, <89 604 0 5120000>,
 			<26 512 2128000 4256000>, <89 604 0 6400000>,
 			<26 512 2400000 4800000>, <89 604 0 6800000>,
-			<26 512 2536000 5072000>, <89 604 0 7000000>;
+			<26 512 2800000	5200000>, <89 604 0 7200000>;
+
 
 
 		/* GDSC oxili regulators */
@@ -69,43 +70,50 @@
 
 			qcom,gpu-pwrlevel@1 {
 				reg = <1>;
-				qcom,gpu-freq = <533000000>;
+				qcom,gpu-freq = <578000000>;
 				qcom,bus-freq = <5>;
-				qcom,io-fraction = <20>;
+				qcom,io-fraction = <0>;
 			};
 
 
 			qcom,gpu-pwrlevel@2 {
 				reg = <2>;
-				qcom,gpu-freq = <450000000>;
+				qcom,gpu-freq = <462400000>;
 				qcom,bus-freq = <4>;
-				qcom,io-fraction = <40>;
+				qcom,io-fraction = <20>;
 			};
 
 			qcom,gpu-pwrlevel@3 {
 		        reg = <3>;
-				qcom,gpu-freq = <320000000>;
+				qcom,gpu-freq = <389000000>;
 				qcom,bus-freq = <3>;
-				qcom,io-fraction = <60>;
+				qcom,io-fraction = <40>;
 			};
 
 			qcom,gpu-pwrlevel@4 {
 				reg = <4>;
-				qcom,gpu-freq = <200000000>;
+				qcom,gpu-freq = <330000000>;
 				qcom,bus-freq = <2>;
-				qcom,io-fraction = <80>;
+				qcom,io-fraction = <60>;
 			};
 
 			qcom,gpu-pwrlevel@5 {
 				reg = <5>;
-				qcom,gpu-freq = <100000000>;
+				qcom,gpu-freq = <200000000>;
 				qcom,bus-freq = <1>;
-				qcom,io-fraction = <100>;
+				qcom,io-fraction = <80>;
 			};
 
 			qcom,gpu-pwrlevel@6 {
 				reg = <6>;
-				qcom,gpu-freq = <19000000>;
+				qcom,gpu-freq = <100000000>;
+				qcom,bus-freq = <0>;
+				qcom,io-fraction = <100>;
+			};
+
+				qcom,gpu-pwrlevel@7 {
+				reg = <7>;
+				qcom,gpu-freq = <27000000>;
 				qcom,bus-freq = <0>;
 				qcom,io-fraction = <0>;
 			};
@@ -203,6 +211,15 @@
 
 			qcom,dcvs-freq@6 {
 				reg = <6>;
+				qcom,freq = <0>;
+				qcom,voltage = <0>;
+				qcom,is_trans_level = <0>;
+				qcom,active-energy-offset = <100>;
+				qcom,leakage-energy-offset = <0>;
+			};
+
+			qcom,dcvs-freq@7 {
+				reg = <7>;
 				qcom,freq = <0>;
 				qcom,voltage = <0>;
 				qcom,is_trans_level = <0>;
