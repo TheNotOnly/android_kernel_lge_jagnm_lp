@@ -25,7 +25,7 @@ elif [ "$instruct" = "build" ]
 then
 
 	make1="echo """
-	make1="echo """
+	make2="echo """
 
 fi
 
