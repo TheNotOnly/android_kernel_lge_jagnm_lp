@@ -1,0 +1,55 @@
+# Copyright (c) 2009-2012, Code Aurora Forum. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of Code Aurora nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+import /init.jagnm_product.rc
+# modem logging (LGODM)
+import /init.lge.modem_log.rc
+
+service atd /system/bin/atd /dev/ttyGS0 /dev/smd0
+    socket atd stream 0660 system inet
+    disabled
+
+service chcon_keystore /system/bin/sh /system/etc/init.jagnm_chcon_keystore.sh
+    disabled
+    oneshot
+    seclabel u:r:keystore:s0
+
+on boot
+    # lmk_fast_run disable
+    write /sys/module/lowmemorykiller/parameters/lmk_fast_run 0
+    lge_chcon_recursive /data/property u:object_r:property_data_file:s0
+    lge_chcon_recursive /data/security u:object_r:security_file:s0
+    start chcon_keystore
+
+on property:ro.baseband="msm"
+    start atd
+
+service rctd /system/bin/rctd
+    class late_start
+    user root
+    group root
+
