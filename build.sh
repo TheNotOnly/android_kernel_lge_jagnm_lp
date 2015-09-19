@@ -52,8 +52,8 @@ then
 	if [ "$os" = "Stock" ]
 	then
 		cd ./RAMDISK/D722/
-		cp ./arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ./arch/arm/boot/dt.img ./split_img/boot.img-dtb
+		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
+		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
 		./repackimg.sh
 		echo "Signing Kernel"
@@ -66,8 +66,8 @@ then
 	elif [ "$os" = "CM" ]
 	then
 		cd ./RAMDISK/D722CM/
-		cp ./arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ./arch/arm/boot/dt.img ./split_img/boot.img-dtb
+		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
+		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
 		./repackimg.sh
 		echo "Signing Kernel"
@@ -83,8 +83,8 @@ then
 	if [ "$os" = "Stock" ]
 	then
 		cd ./RAMDISK/D724/
-		cp ./arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ./arch/arm/boot/dt.img ./split_img/boot.img-dtb
+		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
+		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
 		./repackimg.sh
 		echo "Signing Kernel"
@@ -97,8 +97,8 @@ then
 	elif [ "$os" = "CM" ]
 	then
 		cd ./RAMDISK/D724CM/
-		cp ./arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ./arch/arm/boot/dt.img ./split_img/boot.img-dtb
+		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
+		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
 		./repackimg.sh
 		echo "Signing Kernel"
