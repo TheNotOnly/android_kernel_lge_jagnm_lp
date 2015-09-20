@@ -1,0 +1,70 @@
+# This file will be installed as /init.{ro.hardware}.rc
+
+import /init.qcom.rc
+
+# to override init.qcom.rc and init.target.rc
+import /init.lge.usb.rc
+import /init.lge.log.rc
+import /init.lge.wifi.rc
+import /init.zetaw_core.rc
+import /init.lge.svelte.rc
+
+# [Power_BSP] add init.lge.power.rc
+import /init.lge.power.rc
+
+# lge hidden menu can set parameters persist.service.crash.enable
+# rtb log enable and ftrace event enable
+on property:persist.service.crash.enable=1
+    write /sys/module/restart/parameters/download_mode 1
+    write /sys/module/msm_rtb/parameters/filter 63
+    write /sys/kernel/debug/tracing/buffer_size_kb   512
+    write /sys/kernel/debug/tracing/events/sched/sched_switch/enable 1
+    write /sys/kernel/debug/tracing/events/irq/irq_handler_entry/enable 1
+    write /sys/kernel/debug/tracing/events/workqueue/workqueue_execute_start/enable 1
+    write /sys/kernel/debug/tracing/events/workqueue/workqueue_execute_end/enable 1
+    write /sys/module/lge_handle_panic/parameters/no_powermode 1
+    write /proc/sys/fs/detect_fd_leak 1
+
+on property:persist.service.crash.enable=0
+    write /sys/module/restart/parameters/download_mode 0
+    write /sys/module/msm_rtb/parameters/filter 0
+    write /sys/kernel/debug/tracing/buffer_size_kb   0
+    write /sys/kernel/debug/tracing/events/sched/sched_switch/enable 0
+    write /sys/kernel/debug/tracing/events/irq/irq_handler_entry/enable 0
+    write /sys/kernel/debug/tracing/events/workqueue/workqueue_execute_start/enable 0
+    write /sys/kernel/debug/tracing/events/workqueue/workqueue_execute_end/enable 0
+    write /sys/module/lge_handle_panic/parameters/no_powermode 0
+    write /proc/sys/fs/detect_fd_leak 0
+
+#[LGE_CHANGE_S]Modem-bsp, Modem related services
+on property:rild.modem_restart=silence
+    write /sys/module/lge_handle_panic/parameters/gen_modem_panic 2
+
+service ssr_dump /system/bin/subsystem_ramdump 1 0 0
+    class late_start
+    user system
+    group system sdcard_r sdcard_rw
+    disabled
+
+#touch firmware upgrade on hiddenmenu
+on property:sys.lge.touchfirmware.update=1
+    write /sys/devices/virtual/input/lge_touch/firmware 1
+    setprop sys.lge.touchfirmware.update 2
+#LGE_CHANGE_S, restart qcamerasvr when restarting mediaserver and servicemanager, yousung.kang@lge.com
+on property:init.svc.media=restarting
+    restart qcamerasvr
+on property:init.svc.servicemanager=restarting
+    restart qcamerasvr
+#LGE_CHANGE_E, restart qcamerasvr when restarting mediaserver and servicemanager, yousung.kang@lge.com
+on property:persist.service.ssr_dump.enable=1
+    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
+    start ssr_dump
+on property:persist.service.ssr_dump.enable=0
+    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
+    stop ssr_dump
+#[LGE_CHANGE_E]Modem-bsp, Modem related services
+
+service rctd /system/bin/rctd
+    class late_start
+    user root
+    group root

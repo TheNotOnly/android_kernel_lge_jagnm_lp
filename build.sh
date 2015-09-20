@@ -50,11 +50,8 @@ mkdir Output
 fi
 
 echo "Copying files to respective folder"
-if [ "$model" = "D722" ]
-then
-	if [ "$os" = "Stock" ]
-	then
-		cd ./RAMDISK/D722/
+
+		cd ./RAMDISK/$model$os/
 		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
 		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
@@ -63,50 +60,6 @@ then
 		./bump.py image-new.img
 		cd ../../
 		echo "Moving Kernel to output folder"
-		mv ./RAMDISK/D722/image-new_bumped.img ./Output/D722Stock.img
+		mv ./RAMDISK/$model$os/image-new_bumped.img ./Output/$model$os.img
 
-	elif [ "$os" = "CM" ]
-	then
-		cd ./RAMDISK/D722CM/
-		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
-		echo "Repacking Kernel"
-		./repackimg.sh
-		echo "Signing Kernel"
-		./bump.py image-new.img
-		cd ../../
-		echo "Moving Kernel to output folder"
-		mv ./RAMDISK/D722CM/image-new_bumped.img ./Output/D722CM.img
-	fi
-
-elif [ "$model" = "D724" ]
-then
-	if [ "$os" = "Stock" ]
-	then
-		cd ./RAMDISK/D724/
-		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
-		echo "Repacking Kernel"
-		./repackimg.sh
-		echo "Signing Kernel"
-		./bump.py image-new.img
-		cd ../../
-		echo "Moving Kernel to output folder"
-		mv ./RAMDISK/D724/image-new_bumped.img ./Output/D724Stock.img
-
-	elif [ "$os" = "CM" ]
-	then
-		cd ./RAMDISK/D724CM/
-		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
-		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
-		echo "Repacking Kernel"
-		./repackimg.sh
-		echo "Signing Kernel"
-		./bump.py image-new.img
-		cd ../../
-		echo "Moving Kernel to output folder"
-		mv ./RAMDISK/D724CM/image-new_bumped.img ./Output/D724CM.img
-	fi
-
-fi
 
