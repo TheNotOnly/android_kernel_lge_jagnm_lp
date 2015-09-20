@@ -100,6 +100,21 @@ static struct pm_qos_object network_throughput_pm_qos = {
 	.name = "network_throughput",
 };
 
+
+static BLOCKING_NOTIFIER_HEAD(min_online_cpus_notifier);
+static struct pm_qos_constraints min_online_cpus_constraints = {
+	.list = PLIST_HEAD_INIT(min_online_cpus_constraints.list),
+	.target_value = PM_QOS_MIN_ONLINE_CPUS_DEFAULT_VALUE,
+	.default_value = PM_QOS_MIN_ONLINE_CPUS_DEFAULT_VALUE,
+	.type = PM_QOS_MAX,
+	.notifiers = &min_online_cpus_notifier,
+};
+static struct pm_qos_object min_online_cpus_pm_qos = {
+	.constraints = &min_online_cpus_constraints,
+	.name = "min_online_cpus",
+};
+
+
 static BLOCKING_NOTIFIER_HEAD(max_online_cpus_notifier);
 static struct pm_qos_constraints max_online_cpus_constraints = {
 	.list = PLIST_HEAD_INIT(max_online_cpus_constraints.list),
@@ -148,6 +163,7 @@ static struct pm_qos_object *pm_qos_array[] = {
 	&cpu_dma_pm_qos,
 	&network_lat_pm_qos,
 	&network_throughput_pm_qos,
+	&min_online_cpus_pm_qos,
 	&max_online_cpus_pm_qos,
 	&cpu_freq_min_pm_qos,
 	&cpu_freq_max_pm_qos
@@ -420,8 +436,7 @@ void pm_qos_update_request(struct pm_qos_request *req,
 		return;
 	}
 
-	if (delayed_work_pending(&req->work))
-		cancel_delayed_work_sync(&req->work);
+	cancel_delayed_work_sync(&req->work);
 
 	if (new_value != req->node.prio)
 		pm_qos_update_target(
@@ -447,8 +462,7 @@ void pm_qos_update_request_timeout(struct pm_qos_request *req, s32 new_value,
 		 "%s called for unknown object.", __func__))
 		return;
 
-	if (delayed_work_pending(&req->work))
-		cancel_delayed_work_sync(&req->work);
+	cancel_delayed_work_sync(&req->work);
 
 	if (new_value != req->node.prio)
 		pm_qos_update_target(
@@ -477,8 +491,7 @@ void pm_qos_remove_request(struct pm_qos_request *req)
 		return;
 	}
 
-	if (delayed_work_pending(&req->work))
-		cancel_delayed_work_sync(&req->work);
+	cancel_delayed_work_sync(&req->work);
 
 	pm_qos_update_target(pm_qos_array[req->pm_qos_class]->constraints,
 			     &req->node, PM_QOS_REMOVE_REQ,
@@ -624,7 +637,7 @@ static ssize_t pm_qos_power_write(struct file *filp, const char __user *buf,
 		} else {
 			ascii_value[count] = '\0';
 		}
-		ret = strict_strtoul(ascii_value, 16, &ulval);
+		ret = kstrtoul(ascii_value, 16, &ulval);
 		if (ret) {
 			pr_debug("%s, 0x%lx, 0x%x\n", ascii_value, ulval, ret);
 			return -EINVAL;
