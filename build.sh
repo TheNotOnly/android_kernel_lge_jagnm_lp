@@ -45,7 +45,10 @@ then
 fi
 fi
 
-rm -rf ./Output
+if [ ! -d "Output" ]; then
+mkdir Output
+fi
+
 echo "Copying files to respective folder"
 if [ "$model" = "D722" ]
 then
@@ -60,7 +63,6 @@ then
 		./bump.py image-new.img
 		cd ../../
 		echo "Moving Kernel to output folder"
-		mkdir Output
 		mv ./RAMDISK/D722/image-new_bumped.img ./Output/D722Stock.img
 
 	elif [ "$os" = "CM" ]
@@ -74,7 +76,6 @@ then
 		./bump.py image-new.img
 		cd ../../
 		echo "Moving Kernel to output folder"
-		mkdir Output
 		mv ./RAMDISK/D722CM/image-new_bumped.img ./Output/D722CM.img
 	fi
 
@@ -91,7 +92,6 @@ then
 		./bump.py image-new.img
 		cd ../../
 		echo "Moving Kernel to output folder"
-		mkdir Output
 		mv ./RAMDISK/D724/image-new_bumped.img ./Output/D724Stock.img
 
 	elif [ "$os" = "CM" ]
@@ -105,7 +105,6 @@ then
 		./bump.py image-new.img
 		cd ../../
 		echo "Moving Kernel to output folder"
-		mkdir Output
 		mv ./RAMDISK/D724CM/image-new_bumped.img ./Output/D724CM.img
 	fi
 
