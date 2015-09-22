@@ -960,9 +960,9 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
  * @value	QoS value
  * @dummy
  */
-/*static int qos_dvfs_lat_notify(struct notifier_block *nb, unsigned long value,
+static int qos_dvfs_lat_notify(struct notifier_block *nb, unsigned long value,
 			       void *dummy)
-{*/
+{
 	/*
 	 * In the worst case, with a continuous up-treshold + e cpu load
 	 * from up-threshold - e load, the ondemand governor will react
@@ -970,17 +970,17 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 	 *
 	 * Thus, based on the worst case scenario, we use value / 2;
 	 */
-/*	dbs_tuners_ins.dvfs_lat_qos_wants = value / 2;*/
+	dbs_tuners_ins.dvfs_lat_qos_wants = value / 2;
 
 	/* Update sampling rate */
-/*	update_sampling_rate(0);
+	update_sampling_rate(0);
 
 	return NOTIFY_OK;
 }
 
 static struct notifier_block HYPER_qos_dvfs_lat_nb = {
 	.notifier_call = qos_dvfs_lat_notify,
-};*/
+};
 
 static int __init cpufreq_gov_dbs_init(void)
 {
@@ -1008,15 +1008,15 @@ static int __init cpufreq_gov_dbs_init(void)
 			MIN_SAMPLING_RATE_RATIO * jiffies_to_usecs(10);
 	}
 
-	/*err = pm_qos_add_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
+	err = pm_qos_add_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
 			    &HYPER_qos_dvfs_lat_nb);
 	if (err)
-		return err;*/
+		return err;
 
 	err = cpufreq_register_governor(&cpufreq_gov_HYPER);
 	if (err) {
-		/*pm_qos_remove_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
-				       &HYPER_qos_dvfs_lat_nb);*/
+		pm_qos_remove_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
+				       &HYPER_qos_dvfs_lat_nb);
 	}
 
 	return err;
@@ -1024,8 +1024,8 @@ static int __init cpufreq_gov_dbs_init(void)
 
 static void __exit cpufreq_gov_dbs_exit(void)
 {
-	/*pm_qos_remove_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
-			       &HYPER_qos_dvfs_lat_nb);*/
+	pm_qos_remove_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
+			       &HYPER_qos_dvfs_lat_nb);
 
 	cpufreq_unregister_governor(&cpufreq_gov_HYPER);
 }
