@@ -1885,6 +1885,13 @@ config MSM_CPU_FREQ_MIN
 
 endif # CPU_FREQ_MSM
 
+
+config ALUCARD_HOTPLUG
+	bool "Enable alucard-hotplug cpu hotplug driver"
+	default n
+	help
+	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
+
 config MSM_DEVFREQ_CPUBW
 	bool "Devfreq device for CPU<->DDR IB/AB BW voting"
 	depends on PM_DEVFREQ
