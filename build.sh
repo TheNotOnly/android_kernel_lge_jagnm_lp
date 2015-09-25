@@ -32,15 +32,28 @@ fi
 if [ "$compile" = "y" ]
 then
 
+if [ -e "./arch/arm/boot/dt.img" ]; then
+rm ./arch/arm/boot/dt.img
+fi
+
+if [ -e "./arch/arm/boot/msm8226-v1-jagnm.dtb" ]; then
+rm ./arch/arm/boot/msm8226-v1-jagnm.dtb
+rm ./arch/arm/boot/msm8226-v2-jagnm.dtb
+fi
+
+if [ -e "./arch/arm/boot/msm8226-jag3gds.dtb" ]; then
+rm ./arch/arm/boot/msm8226-jag3gds.dtb
+fi
+
 if [ "$model" = "D722" ]
 then
 
-	rm ./arch/arm/boot/*.dtb && $make1 && $make2 && make CONFIG_NO_ERROR_ON_MISMATCH=y -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=n CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+	$make1 && $make2 && make CONFIG_NO_ERROR_ON_MISMATCH=y -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=n CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
 elif [ "$model" = "D724" ]
 then
 
-	rm ./arch/arm/boot/*.dtb && $make1 && $make2 && make CONFIG_NO_ERROR_ON_MISMATCH=y -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+	$make1 && $make2 && make CONFIG_NO_ERROR_ON_MISMATCH=y -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
 fi
 fi
