@@ -14,8 +14,9 @@ obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSH3)   += cpufreq_smartassH3.o
 obj-$(CONFIG_CPU_FREQ_GOV_ABYSSPLUG)   += cpufreq_abyssplug.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSV2)   += cpufreq_smartass2.o
+
 obj-$(CONFIG_CPU_FREQ_GOV_LAGFREE)      += cpufreq_lagfree.o
-obj-$(CONFIG_CPU_FREQ_GOV_INTELLIDEMAND2)	+= cpufreq_intellidemand2.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTELLIDEMAND)	+= cpufreq_intellidemand2.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTELLIACTIVE)+= cpufreq_intelliactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTELLIMM)	+= cpufreq_intellimm.o
 obj-$(CONFIG_CPU_FREQ_GOV_BRAZILIANWAX)   += cpufreq_brazilianwax.o
@@ -29,6 +30,7 @@ obj-$(CONFIG_CPU_FREQ_GOV_SCARY)   += cpufreq_scary.o
 obj-$(CONFIG_CPU_FREQ_GOV_NIGHTMARE)   += cpufreq_nightmare.o
 obj-$(CONFIG_CPU_FREQ_GOV_HYBRID)   += cpufreq_hybrid.o
 obj-$(CONFIG_CPU_FREQ_GOV_ZZMOOVE)      += cpufreq_zzmoove.o
+obj-$(CONFIG_CPU_FREQ_GOV_WHEATLEY)	+= cpufreq_wheatley.o
 
 # CPUfreq cross-arch helpers
 obj-$(CONFIG_CPU_FREQ_TABLE)		+= freq_table.o

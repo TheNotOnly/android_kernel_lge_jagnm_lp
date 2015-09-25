@@ -126,24 +126,6 @@ static struct dbs_tuners {
  * corner case: enabling io_is_busy might cause freq increase and disabling
  * might cause freq decrease, which probably matches the original intent.
  */
-static inline cputime64_t get_cpu_idle_time(unsigned int cpu, cputime64_t *wall)
-{
-        u64 idle_time;
-        u64 iowait_time;
-
-        /* cpufreq-abyssplug always assumes CONFIG_NO_HZ */
-        idle_time = get_cpu_idle_time_us(cpu, wall);
-
-	/* add time spent doing I/O to idle time */
-        if (dbs_tuners_ins.io_is_busy) {
-                iowait_time = get_cpu_iowait_time_us(cpu, wall);
-                /* cpufreq-abyssplug always assumes CONFIG_NO_HZ */
-                if (iowait_time != -1ULL && idle_time >= iowait_time)
-                        idle_time -= iowait_time;
-        }
-
-        return idle_time;
-}
 
 /************************** sysfs interface ************************/
 
@@ -376,7 +358,7 @@ static ssize_t store_ignore_nice_load(struct kobject *a, struct attribute *b,
 		struct cpu_dbs_info_s *dbs_info;
 		dbs_info = &per_cpu(hp_cpu_dbs_info, j);
 		dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
-						&dbs_info->prev_cpu_wall);
+						&dbs_info->prev_cpu_wall, 0);
 		if (dbs_tuners_ins.ignore_nice)
 			dbs_info->prev_cpu_nice = kcpustat_cpu(j).cpustat[CPUTIME_NICE];
 
@@ -467,7 +449,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		j_dbs_info = &per_cpu(hp_cpu_dbs_info, j);
 
 		/* update both cur_idle_time and cur_wall_time */
-		cur_idle_time = get_cpu_idle_time(j, &cur_wall_time);
+		cur_idle_time = get_cpu_idle_time(j, &cur_wall_time, 0);
 
 		/* how much wall time has passed since last iteration? */
 		wall_time = (unsigned int) cputime64_sub(cur_wall_time,
@@ -672,7 +654,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			j_dbs_info->cur_policy = policy;
 
 			j_dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
-						&j_dbs_info->prev_cpu_wall);
+						&j_dbs_info->prev_cpu_wall, 0);
 			if (dbs_tuners_ins.ignore_nice)
 				j_dbs_info->prev_cpu_nice =
 					kcpustat_cpu(j).cpustat[CPUTIME_NICE];
