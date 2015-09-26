@@ -1,0 +1,110 @@
+{
+  "name": "<b><font color=\"#FFFFFF\">Bread and Butter Kernel</font></b>",
+  "short_description": "Bread and Butter Kernel by TheNotOnly",
+  "xda": "http://forum.xda-developers.com/lg-g3/development/lg-g3-beat-d722-custom-kernel-t3155724",
+  "github": "https://github.com/Grarak/grakernel-msm8226",
+  "features": [
+    "Linux Kernel 3.4.108",
+    "Compiled with to ArchiToolchain GCC 5.2.0",
+    {
+      "name": "CPU Governors",
+      "items": [
+        "zzmoove",
+        "smartassV2",
+        "abyssplug",
+        "SmartassH3",
+        "lagfree",
+        "brazilianwax",
+        "HYPER",
+        "interactiveX",
+        "lulzactiveq",
+        "pegasusq",
+        "sakuractive",
+        "savagedZen",
+        "hybrid",
+        "conservative",
+        "performance",
+        "intellimm",
+        "ondemandplus",
+        "intelliActive",
+        "powersave",
+        "conservative"
+      ]
+    },
+    {
+      "name": "GPU Governors",
+      "items": [
+        "msm_cpufreq",
+        "msm-adreno-tz",
+        "userspace",
+        "powersave",
+        "performance",
+        "simple_ondemand"
+      ]
+    },
+    {
+      "name": "I/O Schedulers",
+      "items": [
+        "noop",
+        "deadline",
+        "row",
+        "cfq",
+        "sio",
+        "fifo",
+        "fiops",
+        "bfq",
+        "zen",
+        "vr",
+        "sioplus"
+      ]
+    },
+    "LZ4",
+    "CSnappy compression/decompression",
+    "f2fs",
+    "Intelliplug (intelligent hotplug)",
+    "zRam",
+    "Sound Control",
+    "Dynamic Fsync",
+    "Power Suspend",
+    "Entropy Control",
+    "UKSM",
+    "Fast Charge",
+    "VFPV4 and NEON support",
+    "O3"
+  ],
+  "downloads": [
+    {
+      "name": "#14",
+      "description": "<b>Only for <i>D724</i></b>",
+      "url": {
+              "Stock": "link",
+              "md5sum_stock": "hash",
+              "CM": "link",
+              "md5sum_cm": "hash"
+        },
+      "install_method": "Flash from recovery",
+      "changelog": [
+        "Added new governors:",
+          "zzmoove",
+          "smartassV2",
+          "abyssplug",
+          "SmartassH3",
+          "lagfree",
+          "brazilianwax",
+          "HYPER",
+          "interactiveX",
+          "lulzactiveq",
+          "pegasusq",
+          "sakuractive",
+          "SavagedZen",
+          "hybrid",
+          "",
+          "Overclocked BUS and RAM to 800MHz",
+          "Added several new CPU frequencies",
+          "O3 instead of Ofast optimisations",
+          "Changed kernel and ramdisk compression to LZ4",
+          "Added UKSM 0.1.2.3"
+      ]
+    }
+  ]
+}
