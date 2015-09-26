@@ -757,7 +757,7 @@ static int hb_check_grade(int load)
 	return grade;
 }
 
-static void hp_work_handler(struct work_struct *work)
+static void __init hp_work_handler(struct work_struct *work)
 {
 	if (mutex_trylock(&hp_onoff_mutex))
 	{

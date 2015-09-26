@@ -578,7 +578,7 @@ out:
 	return;
 }
 
-static void do_cpu_up(struct work_struct *work)
+static void __init do_cpu_up(struct work_struct *work)
 {
 	cpu_up(1);
 }
