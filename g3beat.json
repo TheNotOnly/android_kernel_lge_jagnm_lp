@@ -76,8 +76,8 @@
   ],
   "downloads":  [
     {
-      "name": "Change Log",
-      "description": "<b>R18</b>",
+      "name": "Changelog",
+      "description": "<b>#14</b>",
       "url": "",
       "md5sum": "",
       "changelog": [
@@ -95,7 +95,6 @@
           "sakuractive",
           "SavagedZen",
           "hybrid",
-          "",
           "Overclocked BUS and RAM to 800MHz",
           "Added several new CPU frequencies",
           "O3 instead of Ofast optimisations",
