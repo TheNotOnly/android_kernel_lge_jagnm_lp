@@ -75,13 +75,23 @@
   "downloads": [
     {
       "name": "#14",
-      "description": "<b>Only for <i>D724</i></b>",
+      "description": "<b>CM and Stock Kernel for <i>D722 and D724</i></b>",
       "url": {
+        "D722" :
+        {
               "Stock": "link",
               "md5sum_stock": "hash",
               "CM": "link",
               "md5sum_cm": "hash"
         },
+        "D724" :
+        {
+              "Stock": "link",
+              "md5sum_stock": "hash",
+              "CM": "link",
+              "md5sum_cm": "hash"
+        }
+      },
       "install_method": "Flash from recovery",
       "changelog": [
         "Added new governors:",
