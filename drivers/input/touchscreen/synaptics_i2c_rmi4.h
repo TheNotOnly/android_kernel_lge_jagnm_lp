@@ -31,9 +31,10 @@
 #ifdef CONFIG_FB
 #include <linux/notifier.h>
 #include <linux/fb.h>
-#elif defined CONFIG_HAS_EARLYSUSPEND
-#include <linux/earlysuspend.h>
 #endif
+
+#include <linux/earlysuspend.h>
+
 #include <linux/debugfs.h>
 
 #define PDT_PROPS (0x00EF)
@@ -255,10 +256,6 @@ struct synaptics_rmi4_data {
 	int (*reset_device)(struct synaptics_rmi4_data *rmi4_data);
 #ifdef CONFIG_FB
 	struct notifier_block fb_notif;
-#else
-#ifdef CONFIG_HAS_EARLYSUSPEND
-	struct early_suspend early_suspend;
-#endif
 #endif
 };
 

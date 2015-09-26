@@ -35,6 +35,7 @@ enum {
 	EARLY_SUSPEND_LEVEL_STOP_DRAWING = 100,
 	EARLY_SUSPEND_LEVEL_DISABLE_FB = 150,
 };
+
 struct early_suspend {
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	struct list_head link;

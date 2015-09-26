@@ -14,6 +14,7 @@
  * GNU General Public License for more details.
  *
  */
+#include <linux/earlysuspend.h>
 
 #ifndef LGE_TOUCH_CORE_H
 #define LGE_TOUCH_CORE_H
