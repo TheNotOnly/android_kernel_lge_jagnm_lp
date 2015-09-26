@@ -28,9 +28,6 @@
 #include <linux/fb.h>
 #include <linux/notifier.h>
 #endif
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-#include <linux/earlysuspend.h>
-#endif
 #include <linux/jiffies.h>
 #include <linux/sysdev.h>
 #include <linux/types.h>
@@ -110,11 +107,6 @@ int finger_subtraction_check_count;
 int ghost_detection;
 int ghost_detection_count;
 int double_tap_enabled;
-
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-static void touch_early_suspend(struct early_suspend *h);
-static void touch_late_resume(struct early_suspend *h);
-#endif
 
 /* Auto Test interface for some model */
 struct lge_touch_data *touch_test_dev;
@@ -4451,13 +4443,6 @@ static int touch_probe(struct i2c_client *client, const struct i2c_device_id *id
 	}
 #endif
 
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-	ts->early_suspend.level = EARLY_SUSPEND_LEVEL_BLANK_SCREEN + 1;
-	ts->early_suspend.suspend = touch_early_suspend;
-	ts->early_suspend.resume = touch_late_resume;
-	register_early_suspend(&ts->early_suspend);
-#endif
-
 	/* Register sysfs for making fixed communication path to framework layer */
 	ret = sysdev_class_register(&lge_touch_sys_class);
 	if (ret < 0) {
@@ -4496,9 +4481,6 @@ err_lge_touch_sys_class_register:
 err_lge_touch_fb_register:
 	fb_unregister_client(&ts->fb_notifier_block);
 #endif
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-	unregister_early_suspend(&ts->early_suspend);
-#endif
 err_interrupt_failed:
 err_input_register_device_failed:
 	if (ts->pdata->role->operation_mode)
@@ -4536,9 +4518,6 @@ static int touch_remove(struct i2c_client *client)
 #if defined(CONFIG_FB)
 	fb_unregister_client(&ts->fb_notifier_block);
 #endif
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-	unregister_early_suspend(&ts->early_suspend);
-#endif
 	if (ts->pdata->role->operation_mode)
 		free_irq(client->irq, ts);
 	else
@@ -4559,76 +4538,6 @@ static int touch_remove(struct i2c_client *client)
 
 	return 0;
 }
-
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-static void touch_early_suspend(struct early_suspend *h)
-{
-	struct lge_touch_data *ts =
-			container_of(h, struct lge_touch_data, early_suspend);
-
-	if (unlikely(touch_debug_mask & DEBUG_TRACE))
-		TOUCH_DEBUG_MSG("\n");
-
-	if (ts->fw_info.fw_upgrade.is_downloading == UNDER_DOWNLOADING) {
-		TOUCH_INFO_MSG("early_suspend is not executed\n");
-		return;
-	}
-
-	if (ts->pdata->role->ghost_detection_enable) {
-		resume_flag = 0;
-	}
-	if (ts->pdata->role->operation_mode)
-		touch_disable_irq(ts->client->irq);
-	else
-		hrtimer_cancel(&ts->timer);
-
-	if (ts->pdata->role->ghost_detection_enable) {
-		hrtimer_cancel(&hr_touch_trigger_timer);
-	}
-
-	cancel_work_sync(&ts->work);
-	cancel_delayed_work_sync(&ts->work_init);
-	if (ts->pdata->role->key_type == TOUCH_HARD_KEY)
-		cancel_delayed_work_sync(&ts->work_touch_lock);
-
-	release_all_ts_event(ts);
-	gpio_set_value(ts->pdata->reset_pin, 0);
-
-	touch_power_cntl(ts, ts->pdata->role->suspend_pwr);
-
-}
-
-static void touch_late_resume(struct early_suspend *h)
-{
-	struct lge_touch_data *ts =
-			container_of(h, struct lge_touch_data, early_suspend);
-
-	if (unlikely(touch_debug_mask & DEBUG_TRACE))
-		TOUCH_DEBUG_MSG("\n");
-
-	if (ts->fw_info.fw_upgrade.is_downloading == UNDER_DOWNLOADING) {
-		TOUCH_INFO_MSG("late_resume is not executed\n");
-		return;
-	}
-
-	touch_power_cntl(ts, ts->pdata->role->resume_pwr);
-
-		if (ts->pdata->role->ghost_detection_enable) {
-			resume_flag = 1;
-			ts_rebase_count = 0;
-		}
-	if (ts->pdata->role->operation_mode)
-		touch_enable_irq(ts->client->irq);
-	else
-		hrtimer_start(&ts->timer, ktime_set(0, ts->pdata->role->report_period), HRTIMER_MODE_REL);
-
-	if (ts->pdata->role->resume_pwr == POWER_ON)
-		queue_delayed_work(touch_wq, &ts->work_init,
-				msecs_to_jiffies(ts->pdata->role->booting_delay));
-	else
-		queue_delayed_work(touch_wq, &ts->work_init, 0);
-}
-#endif
 
 #if defined(CONFIG_PM)
 static int touch_suspend(struct device *device)

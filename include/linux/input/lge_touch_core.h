@@ -272,9 +272,6 @@ struct lge_touch_data {
 #if defined(CONFIG_FB)
 	struct notifier_block		fb_notifier_block;
 #endif
-#if defined(CONFIG_HAS_EARLYSUSPEND)
-	struct early_suspend		early_suspend;
-#endif
 	struct touch_platform_data 	*pdata;
 	struct touch_data			ts_data;
 	struct touch_fw_info		fw_info;
