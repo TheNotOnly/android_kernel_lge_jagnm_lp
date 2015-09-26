@@ -16,7 +16,7 @@ obj-$(CONFIG_CPU_FREQ_GOV_ABYSSPLUG)   += cpufreq_abyssplug.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSV2)   += cpufreq_smartass2.o
 
 obj-$(CONFIG_CPU_FREQ_GOV_LAGFREE)      += cpufreq_lagfree.o
-obj-$(CONFIG_CPU_FREQ_GOV_INTELLIDEMAND)	+= cpufreq_intellidemand2.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTELLIDEMAND2)	+= cpufreq_intellidemand2.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTELLIACTIVE)+= cpufreq_intelliactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTELLIMM)	+= cpufreq_intellimm.o
 obj-$(CONFIG_CPU_FREQ_GOV_BRAZILIANWAX)   += cpufreq_brazilianwax.o
