@@ -630,7 +630,7 @@ static int cpufreq_governor_savagedzen(struct cpufreq_policy *new_policy,
         return 0;
 }
 
-/*static void savagedzen_suspend(int cpu, int suspend)
+static void savagedzen_suspend(int cpu, int suspend)
 {
         struct savagedzen_info_s *this_savagedzen = &per_cpu(savagedzen_info, smp_processor_id());
         struct cpufreq_policy *policy = this_savagedzen->cur_policy;
@@ -678,7 +678,7 @@ static void savagedzen_late_resume(struct early_suspend *handler) {
 static struct early_suspend savagedzen_power_suspend = {
         .suspend = savagedzen_early_suspend,
         .resume = savagedzen_late_resume,
-};*/
+};
 
 static int __init cpufreq_savagedzen_init(void)
 {

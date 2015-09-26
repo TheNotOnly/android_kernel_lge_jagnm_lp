@@ -368,7 +368,7 @@ static struct attribute_group dbs_attr_group = {
 /************************** sysfs end ************************/
 
 /********** Porting smartass code for suspension**********/
-/*static void smartass_suspend(int cpu, int suspend)
+static void smartass_suspend(int cpu, int suspend)
 {
     struct cpu_dbs_info_s *this_smartass = &per_cpu(cs_cpu_dbs_info, smp_processor_id());
     struct cpufreq_policy *policy = this_smartass->cur_policy;
@@ -432,7 +432,6 @@ static struct early_suspend smartass_power_suspend =
     .suspend = smartass_early_suspend,
     .resume = smartass_late_resume,
 };
-*/
 
 static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 {

@@ -259,11 +259,9 @@ static struct attribute_group interactiveX_attr_group = {
 	.name = "interactiveX",
 };
 
-/*static void interactiveX_suspend(int suspend)
+static void interactiveX_suspend(int suspend)
 {
 	unsigned int max_speed;
-
-	max_speed = resume_speed;
 
 	if (!enabled) return;
         if (!suspend) { // resume at max speed:
@@ -290,7 +288,7 @@ static struct early_suspend interactiveX_power_suspend = {
         .resume = interactiveX_late_resume,
         .level = EARLY_SUSPEND_LEVEL_DISABLE_FB + 1,
 };
-*/
+
 static int cpufreq_governor_interactiveX(struct cpufreq_policy *new_policy,
 		unsigned int event)
 {

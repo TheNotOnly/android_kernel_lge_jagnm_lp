@@ -630,7 +630,7 @@ static struct attribute_group brazilianwax_attr_group = {
         .name = "brazilianwax",
 };
 
-/*static void brazilianwax_suspend(int cpu, int suspend)
+static void brazilianwax_suspend(int cpu, int suspend)
 {
         struct brazilianwax_info_s *this_brazilianwax = &per_cpu(brazilianwax_info, smp_processor_id());
         struct cpufreq_policy *policy = this_brazilianwax->cur_policy;
@@ -686,7 +686,7 @@ static struct early_suspend brazilianwax_power_suspend = {
         .suspend = brazilianwax_early_suspend,
         .resume = brazilianwax_late_resume,
 	.level = EARLY_SUSPEND_LEVEL_DISABLE_FB + 1,
-};*/
+};
 
 static int cpufreq_governor_brazilianwax(struct cpufreq_policy *new_policy,
                 unsigned int event)

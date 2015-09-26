@@ -1879,7 +1879,7 @@ static struct notifier_block cpufreq_lulzactive_idle_nb = {
 	.notifier_call = cpufreq_lulzactive_idle_notifier,
 };
 
-/*static void lulzactive_early_suspend(struct early_suspend *handler) {
+static void lulzactive_early_suspend(struct early_suspend *handler) {
 	early_suspended = 1;
 }
 
@@ -1891,7 +1891,7 @@ static struct early_suspend lulzactive_power_suspend = {
 	.suspend = lulzactive_early_suspend,
 	.resume = lulzactive_late_resume,
 	.level = EARLY_SUSPEND_LEVEL_DISABLE_FB + 1,
-};*/
+};
 
 void start_lulzactiveq(void)
 {
