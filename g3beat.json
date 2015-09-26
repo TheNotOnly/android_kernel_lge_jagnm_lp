@@ -74,27 +74,12 @@
     "VFPV4 and NEON support",
     "O3"
   ],
-  "downloads": [
+  "downloads":  [
     {
-      "name": "#14",
-      "description": "<b>CM and Stock Kernel for <i>D722 and D724</i></b>",
-      "url": {
-        "D722" :
-        {
-              "Stock": "link",
-              "md5sum_stock": "hash",
-              "CM": "link",
-              "md5sum_cm": "hash"
-        },
-        "D724" :
-        {
-              "Stock": "link",
-              "md5sum_stock": "hash",
-              "CM": "link",
-              "md5sum_cm": "hash"
-        }
-      },
-      "install_method": "Flash from recovery",
+      "name": "Change Log",
+      "description": "<b>R18</b>",
+      "url": "",
+      "md5sum": "",
       "changelog": [
         "Added new governors:",
           "zzmoove",
@@ -116,6 +101,39 @@
           "O3 instead of Ofast optimisations",
           "Changed kernel and ramdisk compression to LZ4",
           "Added UKSM 0.1.2.3"
+          ],
+      "install_method": "Flash from recovery"
+    },
+    {
+      "name": "BreadandButterKernel_CM#14-d722",
+      "url": "http://www.mediafire.com/download/3vss4ifazz25zy8",
+      "md5sum": "5083d3225e8a97b36b95505a410ae45e",
+      "changelog": [
+        "View change log above"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel#14-d722",
+      "url": "http://www.mediafire.com/download/84sj95qhbirxcda",
+      "md5sum": "3f21fd10dcee61796718e4e528b8ee62",
+      "changelog": [
+        "View change log above"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel_CM#14.1-d724",
+      "url": "http://www.mediafire.com/download/3vss4ifazz25zy8",
+      "md5sum": "2a835151552259ffc59d537298b1322f",
+      "changelog": [
+        "View change log above"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel#14.1-d724",
+      "url": "http://www.mediafire.com/download/anaelazsrvpoxna",
+      "md5sum": "0eaba1dcc33fecb53f5585cf0b209a01",
+      "changelog": [
+        "View change log above"
       ]
     }
   ]
