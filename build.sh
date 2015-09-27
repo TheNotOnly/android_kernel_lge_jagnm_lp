@@ -75,4 +75,28 @@ echo "Copying files to respective folder"
 		echo "Moving Kernel to output folder"
 		mv ./RAMDISK/$model$os/image-new_bumped.img ./Output/$model$os.img
 
+echo "Do you you want to create a flashable zip: y/N?"
+read zip
+
+if [ "$zip" == "y" ]
+then
+	echo "What verison?"
+	read ver
+	echo "Copying image to root of unzipped directory renaming it boot."
+	cp ./Output/$model$os.img ./Output/BreadandButterKernel/boot.img
+
+	echo "Changing the directory to root of BreadandButterKernel directory."
+	cd   ./Output/BreadandButterKernel
+
+	echo "Creating flashable zip."
+if [ "$os" == "CM" ]
+then
+	zip -r BreadandButterKernel_$os#$ver-$model . -x ".*"
+else 
+	zip -r BreadandButterKernel#$ver-$model . -x ".*"
+fi
+    echo "Moving zipped file to output folder."
+
+    mv *.zip  ../
+fi
 
