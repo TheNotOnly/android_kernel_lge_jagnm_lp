@@ -14,3 +14,6 @@ obj-$(CONFIG_PM_AUTOSLEEP)	+= autosleep.o
 obj-$(CONFIG_PM_WAKELOCKS)	+= wakelock.o
 
 obj-$(CONFIG_MAGIC_SYSRQ)	+= poweroff.o
+obj-$(CONFIG_EARLYSUSPEND)	+= earlysuspend.o
+obj-$(CONFIG_FBEARLYSUSPEND)	+= fbearlysuspend.o
+

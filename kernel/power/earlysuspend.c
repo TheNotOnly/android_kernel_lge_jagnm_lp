@@ -110,7 +110,6 @@ static void early_suspend(struct work_struct *work)
 abort:
 	spin_lock_irqsave(&state_lock, irqflags);
 	if (state == SUSPEND_REQUESTED_AND_SUSPENDED)
-		wake_unlock(&main_wake_lock);
 	spin_unlock_irqrestore(&state_lock, irqflags);
 }
 
@@ -149,7 +148,7 @@ abort:
 	mutex_unlock(&early_suspend_lock);
 }
 
-void request_suspend_state(suspend_state_t new_state)
+/*void request_suspend_state(suspend_state_t new_state)
 {
 	unsigned long irqflags;
 	int old_sleep;
@@ -185,3 +184,4 @@ suspend_state_t get_suspend_state(void)
 {
 	return requested_suspend_state;
 }
+*/
