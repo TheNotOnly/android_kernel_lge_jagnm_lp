@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "Input Model: D722, D724"
+echo "Input Model: D722, D724, both"
 read model
 echo "CM/Stock"
 read os
-echo "mrproper, clean or build"
+echo "mrproper, clean, dtb or build"
 read instruct
 echo "compile: y/N"
 read compile
@@ -55,7 +55,18 @@ then
 
 	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
+elif [ "$model" = "both" ]
+then
+
+	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+
 fi
+fi
+
+if [ "$instruct" = "dtb" ]
+then
+	make dtbs && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+
 fi
 
 if [ ! -d "Output" ]; then
