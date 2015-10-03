@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Input Model: D722, D724, both"
+echo "Input Model: D722, D724"
 read model
 echo "CM/Stock"
 read os
@@ -8,6 +8,15 @@ echo "mrproper, clean, dtb or build"
 read instruct
 echo "compile: y/N"
 read compile
+
+echo "Do you you want to create a flashable zip: y/N?"
+read zip
+
+if [ "$zip" == "y" ]
+then
+	echo "What verison?"
+	read ver
+fi
 
 if [ "$instruct" = "mrproper" ]
 then
@@ -50,17 +59,13 @@ then
 
 	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=n CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
-elif [ "$model" = "D724" ]
+fi
+
+if [ "$model" = "D724" ]
 then
 
 	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
-elif [ "$model" = "both" ]
-then
-
-	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
-
-fi
 fi
 
 if [ "$instruct" = "dtb" ]
@@ -86,14 +91,9 @@ echo "Copying files to respective folder"
 		echo "Moving Kernel to output folder"
 		mv ./RAMDISK/$model$os/image-new_bumped.img ./Output/$model$os.img
 
-echo "Do you you want to create a flashable zip: y/N?"
-read zip
-
 if [ "$zip" == "y" ]
 then
 
-	echo "What verison?"
-	read ver
 	echo "Copying modules to unzipped directory"
 
 	rm -f ./Output/BreadandButterKernel_$os/system/lib/modules/*
@@ -118,5 +118,6 @@ fi
     echo "Moving zipped file to output folder."
 
     mv *.zip  ../
+fi
 fi
 
