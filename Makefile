@@ -352,13 +352,15 @@ CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-KERNELFLAGS	= -pipe -DNDEBUG -O3 -marm -mfpu=neon-vfpv4 -ftree-vectorize -mvectorize-with-neon-quad -munaligned-access -fgcse-lm -fgcse-sm -fsingle-precision-constant -fforce-addr -fsched-spec-load
-MODFLAGS	= -DMODULE $(KERNELFLAGS)
+
+KERNEL_FLAGS	= -pipe -DNDEBUG -O3 -marm -mtune=cortex-a7 -mcpu=cortex-a7 -mfpu=neon-vfpv4 -ftree-vectorize -mvectorize-with-neon-quad -munaligned-access -fgcse-lm -fgcse-sm -fsingle-precision-constant -fforce-addr -fsched-spec-load
+
+MODFLAGS	= -DMODULE $(KERNEL_FLAGS)
 CFLAGS_MODULE   = $(MODFLAGS)
 AFLAGS_MODULE   = $(MODFLAGS)
 LDFLAGS_MODULE  = -T $(srctree)/scripts/module-common.lds
-CFLAGS_KERNEL	= $(KERNELFLAGS) -fpredictive-commoning
-AFLAGS_KERNEL	= $(KERNELFLAGS)
+CFLAGS_KERNEL	= $(KERNEL_FLAGS) -fpredictive-commoning
+AFLAGS_KERNEL	= $(KERNEL_FLAGS)
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
@@ -376,9 +378,9 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security -Wno-array-bounds \
 		   -fno-delete-null-pointer-checks \
-		   $(KERNELFLAGS)
-KBUILD_AFLAGS_KERNEL := $(KERNELFLAGS)
-KBUILD_CFLAGS_KERNEL := $(KERNELFLAGS)
+		   $(KERNEL_FLAGS)
+KBUILD_AFLAGS_KERNEL := $(KERNEL_FLAGS)
+KBUILD_CFLAGS_KERNEL := $(KERNEL_FLAGS)
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_AFLAGS_MODULE  := $(MODFLAGS)
 KBUILD_CFLAGS_MODULE  := $(MODFLAGS)
