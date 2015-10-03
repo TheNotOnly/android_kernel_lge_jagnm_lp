@@ -75,7 +75,7 @@
     "O3"
   ],
   "downloads":  [
-    [    {
+    {
       "name": "Changelog",
       "description": "<b>#15</b>",
       "url": "",
@@ -124,9 +124,7 @@
       "changelog": [
         "View change log above"
       ]
-    }
-    ],
-    [
+    },
     {
       "name": "Changelog",
       "description": "<b>#14</b>",
@@ -187,6 +185,5 @@
         "View change log above"
       ]
     }
-    ]
   ]
 }
