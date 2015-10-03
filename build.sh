@@ -8,8 +8,9 @@ echo "mrproper, clean, dtb or build"
 read instruct
 echo "compile: y/N"
 read compile
-
-echo "Do you you want to create a flashable zip: y/N?"
+echo "Do you want to repack? y/N"
+read repack
+echo "Do you you want to create a flashable zip? y/N"
 read zip
 
 if [ "$zip" == "y" ]
@@ -67,6 +68,7 @@ then
 	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
 fi
+fi
 
 if [ "$instruct" = "dtb" ]
 then
@@ -77,6 +79,9 @@ fi
 if [ ! -d "Output" ]; then
 mkdir Output
 fi
+
+if [ "$repack" == "y" ]
+then
 
 echo "Copying files to respective folder"
 
@@ -90,6 +95,7 @@ echo "Copying files to respective folder"
 		cd ../../
 		echo "Moving Kernel to output folder"
 		mv ./RAMDISK/$model$os/image-new_bumped.img ./Output/$model$os.img
+fi
 
 if [ "$zip" == "y" ]
 then
@@ -118,6 +124,5 @@ fi
     echo "Moving zipped file to output folder."
 
     mv *.zip  ../
-fi
 fi
 
