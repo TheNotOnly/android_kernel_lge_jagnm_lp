@@ -91,15 +91,24 @@ read zip
 
 if [ "$zip" == "y" ]
 then
+
 	echo "What verison?"
 	read ver
+	echo "Copying modules to unzipped directory"
+
+	rm -f ./Output/BreadandButterKernel_$os/system/lib/modules/*
+
+	find -name "*.ko" -exec cp -f '{}'  ./Output/BreadandButterKernel_$os/system/lib/modules/ \;
+
 	echo "Copying image to root of unzipped directory renaming it boot."
-	cp ./Output/$model$os.img ./Output/BreadandButterKernel/boot.img
+
+	cp ./Output/$model$os.img ./Output/BreadandButterKernel_$os/boot.img
+	cd ./Output/BreadandButterKernel_$os
 
 	echo "Changing the directory to root of BreadandButterKernel directory."
-	cd   ./Output/BreadandButterKernel
 
 	echo "Creating flashable zip."
+
 if [ "$os" == "CM" ]
 then
 	zip -r BreadandButterKernel_$os#$ver-$model . -x ".*"
