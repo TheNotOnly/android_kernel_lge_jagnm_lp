@@ -7,7 +7,7 @@
   "github": "https://github.com/TheNotOnly/android_kernel_lge_jagnm_lp",
   "features": [
     "Linux Kernel 3.4.108",
-    "Compiled with to ArchiToolchain GCC 5.2.0",
+    "Compiled with ArchiToolchain GCC 5.1.0 Optimised for Cortex-A7",
     {
       "name": "CPU Governors",
       "items": [
@@ -15,7 +15,6 @@
         "smartassV2",
         "abyssplug",
         "SmartassH3",
-        "lagfree",
         "brazilianwax",
         "HYPER",
         "interactiveX",
@@ -72,7 +71,9 @@
     "UKSM",
     "Fast Charge",
     "VFPV4 and NEON support",
-    "O3"
+    "O3",
+    "Zcache",
+    "KCAL"
   ],
   "downloads":  [
     {
@@ -89,7 +90,8 @@
           "Added Wheatley governor",
           "Added Alucard governor",
           "Removed lagfree governor",
-          "Used ArchiToolchain GCC 5.1 optimised for Cortex-A7"
+          "Used ArchiToolchain GCC 5.1 optimised for Cortex-A7",
+          "Downloads are below Changelog"
           ],
       "install_method": "Flash from recovery"
     },
