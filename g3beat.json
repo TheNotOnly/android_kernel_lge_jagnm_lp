@@ -95,13 +95,34 @@
           ],
       "install_method": "Flash from recovery"
     },
+        {
+      "name": "BreadandButterKernel_CM#15.1-d722",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.1-D722.zip",
+      "md5sum": "21208014ac972138f712a26d81c945b6",
+      "changelog": [
+        "View change log above"
+        "Only for Unofficial CM for G3s"
+      ],
+      "install_method": "Flash from recovery"
+    },
+    {
+      "name": "BreadandButterKernel_CM#15.1-d724",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.1-D724.zip",
+      "md5sum": "bb86d5aa118c4d9b68cda46b7a1e1e06",
+      "changelog": [
+        "View change log above"
+        "Only for Unofficial CM for G3s"
+      ],
+      "install_method": "Flash from recovery"
+    },
     {
       "name": "BreadandButterKernel_CM#15-d722",
       "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315-D722.zip",
       "md5sum": "24228246ad824b8151a9c662413d28c8",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#15-d722",
@@ -109,7 +130,8 @@
       "md5sum": "aedaeebcb52ec32dc6cf20c13b250f56",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#15-d724",
@@ -117,7 +139,8 @@
       "md5sum": "0054acf8606b71acc4bb9cdb8762e1b8",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#15-d724",
@@ -125,7 +148,8 @@
       "md5sum": "7800b9c7b08bcaffae28aa3cb5bb01ac",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "Changelog",
@@ -161,7 +185,8 @@
       "md5sum": "5083d3225e8a97b36b95505a410ae45e",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#14-d722",
@@ -169,7 +194,8 @@
       "md5sum": "3f21fd10dcee61796718e4e528b8ee62",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#14.1-d724",
@@ -177,7 +203,8 @@
       "md5sum": "2a835151552259ffc59d537298b1322f",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#14.1-d724",
@@ -185,7 +212,8 @@
       "md5sum": "0eaba1dcc33fecb53f5585cf0b209a01",
       "changelog": [
         "View change log above"
-      ]
+      ],
+      "install_method": "Flash from recovery"
     }
   ]
 }
