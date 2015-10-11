@@ -92,7 +92,7 @@
           "Removed lagfree governor",
           "Used ArchiToolchain GCC 5.1 optimised for Cortex-A7",
           "Downloads are below Changelog"
-          ],
+          ]
     },
         {
       "name": "BreadandButterKernel_CM#15.1-d722",
@@ -101,7 +101,7 @@
       "changelog": [
         "View change log above",
         "Only for Unofficial CM for G3s"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel_CM#15.1-d724",
@@ -110,7 +110,7 @@
       "changelog": [
         "View change log above",
         "Only for Unofficial CM for G3s"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel_CM#15-d722",
@@ -118,7 +118,7 @@
       "md5sum": "24228246ad824b8151a9c662413d28c8",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel#15-d722",
@@ -126,7 +126,7 @@
       "md5sum": "aedaeebcb52ec32dc6cf20c13b250f56",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel_CM#15-d724",
@@ -134,7 +134,7 @@
       "md5sum": "0054acf8606b71acc4bb9cdb8762e1b8",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel#15-d724",
@@ -142,7 +142,7 @@
       "md5sum": "7800b9c7b08bcaffae28aa3cb5bb01ac",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "Changelog",
@@ -187,7 +187,7 @@
       "md5sum": "3f21fd10dcee61796718e4e528b8ee62",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel_CM#14.1-d724",
@@ -195,7 +195,7 @@
       "md5sum": "2a835151552259ffc59d537298b1322f",
       "changelog": [
         "View change log above"
-      ],
+      ]
     },
     {
       "name": "BreadandButterKernel#14.1-d724",
@@ -203,7 +203,7 @@
       "md5sum": "0eaba1dcc33fecb53f5585cf0b209a01",
       "changelog": [
         "View change log above"
-      ],
+      ]
     }
   ]
 }
