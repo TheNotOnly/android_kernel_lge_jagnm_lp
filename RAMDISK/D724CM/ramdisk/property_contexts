@@ -66,16 +66,6 @@ ctl.                    u:object_r:ctl_default_prop:s0
 
 # NFC properties
 nfc.                    u:object_r:nfc_prop:s0
-#line 1 "device/qcom/sepolicy/common/property_contexts"
-wc_transport.              u:object_r:bluetooth_prop:s0
-usb_uicc.                  u:object_r:uicc_prop:s0
-sys.ims.                   u:object_r:qcom_ims_prop:s0
-#line 1 "device/lge/w7/sepolicy/property_contexts"
-gsm.version.baseband		u:object_r:baseband_prop:s0
-camera.4k2k.enable		u:object_r:camera_prop:s0
-persist.data.sensor_name	u:object_r:camera_prop:s0
-persist.data.rear.minfps	u:object_r:camera_prop:s0
-persist.data.front.minfps	u:object_r:camera_prop:s0
 #line 1 "vendor/cm/sepolicy/property_contexts"
 service.adb.tcp.port          u:object_r:adbtcp_prop:s0
 recovery.perf.mode            u:object_r:recovery_prop:s0
