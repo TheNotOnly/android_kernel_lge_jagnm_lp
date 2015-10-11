@@ -23,7 +23,16 @@ if [ "$instruct" = "mrproper" ]
 then
 
 	make1="make mrproper"
+
+if [ "$model" = "D722" ]
+then
 	make2="make jagnm_global_com_defconfig"
+fi
+
+if [ "$model" = "D724" ]
+then
+	make2="make jag3gds_global_com_defconfig"
+fi
 
 elif [ "$instruct" = "clean" ]
 then
@@ -58,14 +67,14 @@ fi
 if [ "$model" = "D722" ]
 then
 
-	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=n CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=y && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+	$make1 && $make2 && make -j3 && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
 fi
 
 if [ "$model" = "D724" ]
 then
 
-	$make1 && $make2 && make -j3 CONFIG_MACH_MSM8226_JAG3GDS_GLOBAL_COM=y CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM=n && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
+	$make1 && $make2 && make -j3 && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
 fi
 fi
