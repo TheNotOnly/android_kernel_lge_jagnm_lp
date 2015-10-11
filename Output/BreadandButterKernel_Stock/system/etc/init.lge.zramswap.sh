@@ -82,7 +82,6 @@ start() {
   # initialize and configure the zram devices as a swap partition
   zramdev_num=0
   while [[ $zramdev_num -lt $nr_zramdev ]]; do
-	echo lz4 > /sys/block/zram0/comp_algorithm
     echo $sz_zram > /sys/block/zram${zramdev_num}/disksize
     mkswap /dev/block/zram${zramdev_num} && (echo "mkswap ${zramdev_num}") || (echo "mkswap ${zramdev_num} failed and exiting(${?})" ; exit $?)
     swapon -p 5 /dev/block/zram${zramdev_num} && (echo "swapon ${zramdev_num}") || (echo "swapon ${zramdev_num} failed and exiting(${?})" ; exit $?)
