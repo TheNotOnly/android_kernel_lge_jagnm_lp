@@ -117,9 +117,9 @@ then
 
 if [ "$os" == "CM" ]
 then
-	zip -r BreadandButterKernel_$os#$ver-$model . -x ".*"
+	zip -r BreadandButterKernel_$os#$ver-$model.zip . -x ".*"
 else 
-	zip -r BreadandButterKernel#$ver-$model . -x ".*"
+	zip -r BreadandButterKernel#$ver-$model.zip . -x ".*"
 fi
     echo "Moving zipped file to output folder."
 
