@@ -93,7 +93,6 @@
           "Used ArchiToolchain GCC 5.1 optimised for Cortex-A7",
           "Downloads are below Changelog"
           ],
-      "install_method": "Flash from recovery"
     },
         {
       "name": "BreadandButterKernel_CM#15.1-d722",
@@ -103,7 +102,6 @@
         "View change log above",
         "Only for Unofficial CM for G3s"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#15.1-d724",
@@ -113,7 +111,6 @@
         "View change log above",
         "Only for Unofficial CM for G3s"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#15-d722",
@@ -122,7 +119,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#15-d722",
@@ -131,7 +127,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#15-d724",
@@ -140,7 +135,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#15-d724",
@@ -149,7 +143,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "Changelog",
@@ -195,7 +188,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel_CM#14.1-d724",
@@ -204,7 +196,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     },
     {
       "name": "BreadandButterKernel#14.1-d724",
@@ -213,7 +204,6 @@
       "changelog": [
         "View change log above"
       ],
-      "install_method": "Flash from recovery"
     }
   ]
 }
