@@ -94,13 +94,17 @@ on boot
 
 
     #Bluetooth
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/type
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwake
     chown bluetooth net_bt_stack /proc/bluetooth/sleep/proto
-    chmod 0660 /sys/class/rfkill/rfkill2/state
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
+    chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/btwake
     chmod 0660 /proc/bluetooth/sleep/proto
+    chmod 0660 /proc/bluetooth/sleep/lpm
+    chmod 0660 /proc/bluetooth/sleep/btwrite
     chown bluetooth net_bt_stack /dev/ttyHS99
     chmod 0660 /dev/ttyHS99
     chown bluetooth net_bt_stack /sys/devices/platform/msm_serial_hs.0/clock
