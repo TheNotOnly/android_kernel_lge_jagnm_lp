@@ -161,7 +161,6 @@ static enum hrtimer_restart touch_trigger_timer_handler(struct hrtimer *timer)
 	return HRTIMER_NORESTART;
 }
 
-#ifdef CONFIG_MACH_MSM8926_JAGNM_GLOBAL_COM
 void trigger_usb_state_from_otg(int type)
 {
 	u8 buf = 0;
@@ -215,7 +214,6 @@ void trigger_usb_state_from_otg(int type)
 	mutex_unlock(&i2c_suspend_lock);
 
 }
-#endif
 
 #define ts_caps	(ts->pdata->caps)
 #define ts_role	(ts->pdata->role)
