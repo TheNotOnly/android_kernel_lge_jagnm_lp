@@ -106,12 +106,10 @@
     },
     {
       "name": "BreadandButterKernel_CM#15.4-d724",
-      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.4-D724.zip",
+      "url": "",
       "md5sum": "e4c9df9a93b4db77bba510cea61da96b",
       "changelog": [
-        "View change log above",
-        "Updated Kernel Version to 3.4.110",
-        "cm-12.1-20151101: New RIL"
+        "Down for the moment"
       ]
     },
     {
