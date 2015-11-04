@@ -94,6 +94,65 @@
           "Downloads are below Changelog"
           ]
     },
+    {
+      "name": "BreadandButterKernel_CM#15.4-d722",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.4-D722.zip",
+      "md5sum": "baecfd427dd8a7a8597690bbcb4af823",
+      "changelog": [
+        "View change log above",
+        "*Updated*"
+        "cm-12.1-20151101: New RIL"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel_CM#15.4-d724",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.4-D724.zip",
+      "md5sum": "e4c9df9a93b4db77bba510cea61da96b",
+      "changelog": [
+        "View change log above",
+        "*Updated*"
+        "cm-12.1-20151101: New RIL"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel_CM#15.3-d722",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.3-D722.zip",
+      "md5sum": "c360935646908a45b4d3848bacecb733",
+      "changelog": [
+        "View change log above",
+        "*Updated*",
+        "cm-12.1-20151024: LED Works now"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel_CM#15.3-d724",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.3-D724.zip",
+      "md5sum": "7fc44f3ca3dab89e6dfe6ab90cd3665a",
+      "changelog": [
+        "View change log above",
+        "cm-12.1-20151024: LED Works now"
+      ]
+    },
+            {
+      "name": "BreadandButterKernel_CM#15.2-d722",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.2-D722.zip",
+      "md5sum": "ea605c4806ef66835d858390c9fc9feb",
+      "changelog": [
+        "View change log above",
+        "Only for Unofficial CM for G3s",
+        "Fixed Bluetooth (Thanks to vm03)"
+      ]
+    },
+    {
+      "name": "BreadandButterKernel_CM#15.2-d724",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.2-D724.zip",
+      "md5sum": "4cce5133ead92606b0e558f4ea3229b6",
+      "changelog": [
+        "View change log above",
+        "Only for Unofficial CM for G3s",
+        "Fixed Bluetooth (Thanks to vm03)"
+      ]
+    },
         {
       "name": "BreadandButterKernel_CM#15.1-d722",
       "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.1-D722.zip",
