@@ -113,6 +113,16 @@
       ]
     },
     {
+      "name": "BreadandButterKernel_CM#15.4-d722",
+      "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.4-D722.zip",
+      "md5sum": "9ae3ff821e0762d100a4885caa596574",
+      "changelog": [
+        "View change log above",
+        "Updated Kernel Version to 3.4.110",
+        "cm-12.1-20151101: New RIL"
+      ]
+    },
+    {
       "name": "BreadandButterKernel_CM#15.3-d722",
       "url": "https://dl.cubeserver.eu/TheNotOnly/v15/BreadandButterKernel_CM%2315.3-D722.zip",
       "md5sum": "c360935646908a45b4d3848bacecb733",
