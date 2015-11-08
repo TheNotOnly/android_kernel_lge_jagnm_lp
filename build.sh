@@ -15,7 +15,7 @@ read zip
 
 if [ "$zip" == "y" ]
 then
-	echo "What verison?"
+	echo "What version?"
 	read ver
 fi
 
@@ -127,7 +127,12 @@ then
 if [ "$os" == "CM" ]
 then
 	zip -r BreadandButterKernel_$os#$ver-$model.zip . -x ".*"
-else 
+fi
+if [ "$os" == "MAXICM" ]
+then
+	zip -r BreadandButterKernel_MaxiCM#$ver-$model.zip . -x ".*"
+fi
+if [ "$os" == "Stock" ]
 	zip -r BreadandButterKernel#$ver-$model.zip . -x ".*"
 fi
     echo "Moving zipped file to output folder."
