@@ -95,6 +95,8 @@ then
 echo "Copying files to respective folder"
 
 		cd ./RAMDISK/$model$os/
+		./cleanup.sh
+		./unpackimg.sh boot.img
 		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
 		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
