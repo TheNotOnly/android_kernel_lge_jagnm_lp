@@ -2,7 +2,7 @@
 
 echo "Input Model: D722, D724"
 read model
-echo "CM/Stock"
+echo "CM/Stock/MAXICM"
 read os
 echo "mrproper, clean, dtb or build"
 read instruct
@@ -97,6 +97,7 @@ echo "Copying files to respective folder"
 		cd ./RAMDISK/$model$os/
 		./cleanup.sh
 		./unpackimg.sh boot.img
+		cp ../boot.img-ramdiskcomp ./split_img/boot.img-ramdiskcomp
 		cp ../../arch/arm/boot/zImage ./split_img/boot.img-zImage
 		cp ../../arch/arm/boot/dt.img ./split_img/boot.img-dtb
 		echo "Repacking Kernel"
@@ -135,6 +136,7 @@ then
 	zip -r BreadandButterKernel_MaxiCM#$ver-$model.zip . -x ".*"
 fi
 if [ "$os" == "Stock" ]
+then
 	zip -r BreadandButterKernel#$ver-$model.zip . -x ".*"
 fi
     echo "Moving zipped file to output folder."
