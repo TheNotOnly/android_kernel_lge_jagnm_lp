@@ -64,19 +64,8 @@ if [ -e "./arch/arm/boot/msm8226-jag3gds.dtb" ]; then
 rm ./arch/arm/boot/msm8226-jag3gds.dtb
 fi
 
-if [ "$model" = "D722" ]
-then
+	$make1 && $make2 && make -j2 && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
 
-	$make1 && $make2 && make -j3 && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
-
-fi
-
-if [ "$model" = "D724" ]
-then
-
-	$make1 && $make2 && make -j3 && ./dtbToolCM -2 -s 2048 -p ./scripts/dtc/ -o ./arch/arm/boot/dt.img ./arch/arm/boot/
-
-fi
 fi
 
 if [ "$instruct" = "dtb" ]
