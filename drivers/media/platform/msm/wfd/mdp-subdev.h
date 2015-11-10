@@ -61,6 +61,8 @@ static inline bool mdp_buf_info_equals(struct mdp_buf_info *a,
 #define MDP_MUNMAP  _IOR(MDP_MAGIC_IOCTL, 9, struct mem_region_map *)
 #define MDP_SECURE  _IO(MDP_MAGIC_IOCTL, 9)
 
+
+extern int mdp_init(struct v4l2_subdev *sd, u32 val);
 extern long mdp_ioctl(struct v4l2_subdev *sd, unsigned int cmd, void *arg);
 
 
