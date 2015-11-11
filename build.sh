@@ -13,7 +13,7 @@ read repack
 echo "Do you you want to create a flashable zip? y/N"
 read zip
 
-if [ "$zip" == "y" ]
+if [ "$zip" = "y" ]
 then
 	echo "What version?"
 	read ver
@@ -78,7 +78,7 @@ if [ ! -d "Output" ]; then
 mkdir Output
 fi
 
-if [ "$repack" == "y" ]
+if [ "$repack" = "y" ]
 then
 
 echo "Copying files to respective folder"
@@ -98,7 +98,7 @@ echo "Copying files to respective folder"
 		mv ./RAMDISK/$model$os/image-new_bumped.img ./Output/$model$os.img
 fi
 
-if [ "$zip" == "y" ]
+if [ "$zip" = "y" ]
 then
 
 	echo "Copying modules to unzipped directory"
@@ -116,15 +116,15 @@ then
 
 	echo "Creating flashable zip."
 
-if [ "$os" == "CM" ]
+if [ "$os" = "CM" ]
 then
 	zip -r BreadandButterKernel_$os#$ver-$model.zip . -x ".*"
 fi
-if [ "$os" == "MAXICM" ]
+if [ "$os" = "MAXICM" ]
 then
 	zip -r BreadandButterKernel_MaxiCM#$ver-$model.zip . -x ".*"
 fi
-if [ "$os" == "Stock" ]
+if [ "$os" = "Stock" ]
 then
 	zip -r BreadandButterKernel#$ver-$model.zip . -x ".*"
 fi
