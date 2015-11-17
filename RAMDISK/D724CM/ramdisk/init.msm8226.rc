@@ -111,6 +111,7 @@ on boot
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
     # Feature chip vendor : brcm
     setprop bluetooth.chip.vendor brcm
+    setprop ro.fm.module BCM
 
     # Subsytem Restart
     #adsp
@@ -409,11 +410,11 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 #Load MAC's
-#service conn_init /system/bin/hwaddrs
-#    class late_start
-#    user system
-#    group system wifi
-#    oneshot
+service conn_init /system/bin/hwaddrs
+    user root
+    group system wifi bluetooth net_bt_admin misc net_bt_stack
+    disabled
+    oneshot
 
 #on property:init.svc.conn_init=stopped
 #    chmod 644 /data/misc/bdaddr
