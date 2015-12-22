@@ -103,7 +103,7 @@ then
 
 	echo "Copying modules to unzipped directory"
 
-	rm -f ./Output/BreadandButterKernel_$os/system/lib/modules/*
+	rm -rf ./Output/BreadandButterKernel_$os/system/lib/modules/*
 
 	find -name "*.ko" -exec cp -f '{}'  ./Output/BreadandButterKernel_$os/system/lib/modules/ \;
 
