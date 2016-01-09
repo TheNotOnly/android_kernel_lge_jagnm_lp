@@ -91,8 +91,19 @@
           "Added Alucard governor",
           "Removed lagfree governor",
           "Used ArchiToolchain GCC 5.1 optimised for Cortex-A7",
+          "Use ofast instead of o3",
+          "http fixed",
           "Downloads are below Changelog"
           ]
+    },
+    {
+      "name": "BreadandButterKernel_CM13#16.5-d722",
+      "url": "https://github.com/TheNotOnly/android_kernel_lge_msm8226/blob/cm-13.0-debug/Release/BreadandButterKernel_CM13%2316.5-D722.zip",
+      "md5sum": "63FBB987844C6F4BD0BB317447FAB482",
+      "changelog": [
+        "View change log above",
+        "Kernel for CM13 NIGHTLIES: cm-13.0-20160109-NIGHTLY-jagnm",
+      ]
     },
     {
       "name": "BreadandButterKernel_CM13#16.4-d722",
