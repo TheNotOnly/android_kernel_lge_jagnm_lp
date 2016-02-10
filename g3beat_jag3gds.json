@@ -78,7 +78,7 @@
   "downloads":  [
     {
       "name": "Changelog",
-      "description": "<b>#15</b>",
+      "description": "<b>#16</b>",
       "url": "",
       "md5sum": "",
       "changelog": [
@@ -95,6 +95,18 @@
           "http fixed",
           "Downloads are below Changelog"
           ]
+    },
+        {
+      "name": "BreadandButterKernel_CM13#16.7-d724",
+      "url": "https://github.com/TheNotOnly/android_kernel_lge_msm8226/raw/cm-13.0-debug/Release/BreadandButterKernel_CM13%2316.7-D724.zip",
+      "md5sum": "178793288B8391A12CE75559E0E60268",
+      "changelog": [
+        "View change log above",
+        "cm-13.0-20160210-NIGHTLY",
+        "Added support for DriveDroid",
+        "Changed ramdisk compression to gzip",
+        "Unofficial IRRC patch can now be flashed"
+      ]
     },
     {
       "name": "BreadandButterKernel_CM13#16.6-d724",
