@@ -4,7 +4,7 @@
   "long_description": "Bread and Butter Kernel Compatible for Stock and CM ROMs Lollipop only.",
   "logo": "https://raw.githubusercontent.com/TheNotOnly/android_kernel_lge_jagnm_lp/master/banner.jpg",
   "xda": "http://forum.xda-developers.com/lg-g3/development/lg-g3-beat-d722-custom-kernel-t3155724",
-  "github": "https://github.com/TheNotOnly/android_kernel_lge_jagnm_lp",
+  "github": "https://github.com/TheNotOnly/android_kernel_lge_msm8226",
   "features": [
     "Linux Kernel 3.4.108",
     "Compiled with ArchiToolchain GCC 5.1.0 Optimised for Cortex-A7",
